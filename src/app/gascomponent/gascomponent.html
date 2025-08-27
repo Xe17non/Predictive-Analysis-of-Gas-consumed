@@ -1,0 +1,26 @@
+<div class="gas-form">
+  <h2>Gas Consumption Predictor</h2>
+
+  <label for="ga">Select GA:</label>
+  <select id="ga" [(ngModel)]="selectedGA" name="ga" required>
+    <option value="" disabled selected>Select GA</option>
+    <option *ngFor="let ga of gaList" [value]="ga.name_of_ga">{{ ga.name_of_ga }}</option>
+  </select>
+
+ <label for="year">Select Year:</label>
+<select id="year" [(ngModel)]="selectedYear" (change)="updateMonths(selectedYear)">
+  <option *ngFor="let year of years" [value]="year">{{ year }}</option>
+</select>
+
+  <label for="month">Select Month:</label>
+  <select id="month" [(ngModel)]="selectedMonth">
+    <option *ngFor="let month of months" [value]="month">{{ month }}</option>
+  </select>
+
+  <button (click)="predictGas()">Predict</button>
+
+  <div *ngIf="prediction !== null">
+    <h3>Predicted Gas Usage:</h3>
+    <p>{{ prediction }} units</p>
+  </div>
+</div>
